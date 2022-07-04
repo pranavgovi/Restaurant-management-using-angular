@@ -1,0 +1,465 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESTAURANT TABLE MANAGEMENT SYSTEM</title>
+    <style>
+        #res {
+            text-align: center;
+            font-family: "Lucida Console", "Courier New", monospace;
+            color: black;
+        }
+        
+        table,
+        td {
+            border: 3px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="table.css">
+</head>
+
+<body ng-app="myapp" id="body">
+
+
+
+
+
+    <div ng-controller="table">
+
+        <span><h1 id="res">RESTAURANT MANAGEMENT APPLICATION FOR EMPLOYEES</h1></span><br>
+        <button id="test" onclick="drawShape();">Quote
+            <canvas id="mycanvas"></canvas>
+        </button><br><br><br><br>
+
+
+        <video width="320" height="240" controls>
+            <source src="vid.mp4" type="video/mp4">
+        </video><br><br><br>
+        <h3 style="writing-mode: vertical-rl;">DESSERTS:</h3>
+        <audio controls>
+            
+            <source src="aud.m4a" type="audio/mpeg">
+          
+          </audio><br><br>
+        <h2>Famous veg and non veg Recipes</h2>
+        <iframe src="https://regionalfoodsolutions.com/10-best-non-veg-food-in-india/">
+        </iframe>
+        <iframe src="https://food.ndtv.com/lists/10-best-vegetarian-recipes-693595">
+        </iframe>
+
+        <h2>Employee Queries: <a href="mailto:pranav292005@gmail.com">Send email</a></h2><br>
+        <hr>
+        <h2>EMPLOYEE LOGIN</h2>
+        <br>
+        <figure>
+
+            <img src="sign.jpg" alt="Workplace" usemap="#workmap" width="200" height="200">
+            <figcaption>Click the hotspot to login /sign in</figcaption>
+
+        </figure>
+        <map name="workmap">
+  <area shape="rect" coords="10,10,30,30" alt="Computer" href="angular_form.html">
+ 
+</map>
+        <hr>
+        <h3>Click the button to get restaurant's coordinates.</h3>
+
+        <button onclick="getLocation()">RESTAURANT LOCATION</button>
+
+        <p id="demo"></p><br>
+
+        <H2 style="color:chartreuse;"><a href="#list"> EMPLOYEE NAMES</a>
+            <BR>
+            <BR>
+        </H2>
+        <div class="box"> EMPLOYEE OF THE WEEK -PRANAV</div>
+
+
+
+
+        <BR>
+        <BR>
+        <div>
+            <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&w=1000&q=80" style="width: 200px; height: 200px;">
+            <img src="/images.jpg" style="width:200px ; height: 200px;">
+            <img src="/fill.jpg" style="width:200px ; height: 200px;">
+            <img src="/fill1.jpg" style="width:205px ; height: 200px;">
+            <img src="/fill2.jpg" style="width:210px ; height: 200px;">
+            <img src="/a.jpg" style="width: 210px; height: 200px;">
+        </div><br><br><br>
+        <table id="table" style="table-layout: fixed; width: 30%; height: 30%">
+            <tr>
+
+                <td style="width:300px; height:75px">
+
+                    <form name="form1" ng-submit="disp1()" id="form1">
+
+                        <h3 style="float:center">TABLE 1</h3>
+                        <label for="tb1">MAIN COURSE</label>
+                        <input type="text" name="name" id="name1" ng-model="newitem1.name">
+                        <label for="tb1">COST</label>
+                        <input type="number" name="cost" ng-model="newitem1.cost"><br><br>
+                        <input type="submit" value="ADD ITEM  TO TABLE">
+                        <br><br>
+                    </form>
+                </td>
+
+
+                <td style="width:300px;height:90px">
+                    <form name="form2" ng-submit="disp2()" id="form2">
+
+                        <h3 style="float:center">TABLE 2</h3>
+                        <label for="tb1">MAIN COURSE</label>
+                        <input type="text" name="name " ng-model="newitem2.name">
+                        <label for="tb1">COST</label>
+                        <input type="number" name="cost" ng-model="newitem2.cost"><br><br>
+                        <input type="submit" value="ADD ITEM  TO TABLE">
+                        <br><br>
+                    </form>
+                </td>
+                <td style="width:300px; height:90px">
+                    <form name="form3" ng-submit="disp3()" id="form3">
+
+                        <h3 style="float:center">TABLE 3</h3>
+                        <label for="tb1">MAIN COURSE</label>
+                        <input type="text" name="name " ng-model="newitem3.name">
+                        <label for="tb1">COST</label>
+                        <input type="number" name="cost" ng-model="newitem3.cost"><br><br>
+                        <input type="submit" value="ADD ITEM  TO TABLE">
+                        <br><br>
+                    </form>
+                </td>
+                <td style="width:300px; height:90px">
+                    <form name="form4" ng-submit="disp4()" id="form4">
+
+                        <h3 style="float:center">TABLE 4</h3>
+                        <label for="tb1">MAIN COURSE</label>
+                        <input type="text" name="name " ng-model="newitem4.name">
+                        <label for="tb1">COST</label>
+                        <input type="number" name="cost" ng-model="newitem4.cost"><br><br>
+                        <input type="submit" value="ADD ITEM  TO TABLE">
+                        <br><br>
+                    </form>
+                </td>
+
+            </tr>
+        </table><br><br>
+        <form>
+            <input type="text" placeholder="enter food name " ng-model="search">
+
+
+            <div ng-repeat="x in table1  | filter: search">
+                {{x.name}} {{x.cost}}
+
+            </div>
+        </form>
+        <H3 id="tb1_font">TABLE 1:</H3>
+        <table id="p1">
+            <thead id="th1">
+                <tr>
+                    <th>NAME</th>
+                    <th>COST</th>
+                    <th>DEL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="i in table1">
+
+                    <td ng-hide="check">{{i.name}}</td>
+                    <td ng-hide="check">{{i.cost}}</td>
+                    <td ng-hide="check"><input type="checkbox" ng-model="check" ng-hide="check">cancel item</td>
+
+                </tr>
+            </tbody>
+
+        </table>
+        <div ng-model="total1" id="un">
+            <h3>TOTAL BILL = {{total1}} </h3>
+
+        </div>
+        <div>
+            <H3 id="tb1_font">TABLE 2:</H3>
+            <table id="p1">
+                <thead id="th1">
+                    <tr>
+                        <th>NAME</th>
+                        <th>COST</th>
+                        <th>DEL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="i in table2">
+                        <td ng-hide="check">{{i.name}}</td>
+                        <td ng-hide="check">{{i.cost}}</td>
+                        <td ng-hide="check"><input type="checkbox" ng-model="check" ng-hide="check">cancel item</td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+            <div ng-model="total2" id="un">
+                <h3>TOTAL BILL = {{total2}} </h3>
+
+            </div>
+        </div>
+        <div>
+            <H3 id="tb1_font">TABLE 3:</H3>
+            <table id="p1">
+                <thead id="th1">
+                    <tr>
+                        <th>NAME</th>
+                        <th>COST</th>
+                        <th>DEL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="i in table3">
+                        <td ng-hide="check">{{i.name}}</td>
+                        <td ng-hide="check">{{i.cost}}</td>
+                        <td ng-hide="check"><input type="checkbox" ng-model="check" ng-hide="check">cancel item</td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+            <div ng-model="total3" id="un">
+                <h3>TOTAL BILL = {{total3}} </h3>
+
+            </div>
+        </div>
+        <div>
+            <H3 id="tb1_font">TABLE 4:</H3>
+            <table id="p1">
+                <thead id="th1">
+                    <tr>
+                        <th>NAME</th>
+                        <th>COST</th>
+                        <th>DEL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="i in table4">
+                        <td ng-hide="check">{{i.name}}</td>
+                        <td ng-hide="check">{{i.cost}}</td>
+                        <td ng-hide="check"><input type="checkbox" ng-model="check" ng-hide="check">cancel item</td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+            <div ng-model="total4" id="un">
+                <h3>TOTAL BILL = {{total4}} </h3>
+
+            </div>
+        </div>
+
+
+        <div id="calc">
+            <h3>TO CALCULATE BILLS</h3>
+
+            <table>
+                <tr>
+                    <td>a =</td>
+                    <td><input ng-model="a"></td>
+                    <td>
+                        <button class="command" ng-click="inca()">+1</button>
+                        <button class="command" ng-click="deca()">-1</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>b =</td>
+                    <td><input ng-model="b"></td>
+                    <td>
+                        <button class="command" ng-click="incb()">+1</button>
+                        <button class="command" ng-click="decb()">-1</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>operation:</td>
+                    <td>
+                        <select ng-model="operation">
+              <option value="+">+</option>
+              <option value="-">-</option>
+              <option value="*">*</option>
+              <option value="/">/</option>
+            </select>
+                    </td>
+                </tr>
+            </table>
+            <b class="result">{{na()}} {{operation}} {{nb()}} = {{calculate()}}</b>
+        </div>
+    </div>
+    <BR>
+    <div id="list">
+        <H4>EMPLOYEEE LIST</H4>
+        <ol>
+            <li>PRANAV</li>
+            <li>SACHIN</li>
+            <li>RAMESH</li>
+            <li>SURESH</li>
+            <li>DANNY</li>
+        </ol>
+    </div>
+    <br><br>
+    <svg width="40" height="40" style="float: right;">
+        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="4" fill="orange" />
+      </svg>
+    <script>
+        function drawShape() {
+
+            // get the canvas element using the DOM
+            var canvas = document.getElementById('mycanvas');
+
+            // Make sure we don't execute when canvas isn't supported
+            if (canvas.getContext) {
+
+                // use getContext to use the canvas for drawing
+                var ctx = canvas.getContext('2d');
+
+                ctx.fillStyle = '#00F';
+                ctx.font = 'Italic 30px Sans-Serif';
+
+                ctx.textBaseline = 'Top';
+                ctx.fillText('EAT AND REPEAT', 40, 100);
+
+                ctx.font = 'Bold 30px Sans-Serif';
+                ctx.strokeText('EAT AND REPEAT', 40, 50);
+            } else {
+                alert('You need Safari or Firefox 1.5+ to see this demo.');
+            }
+        }
+        var app = angular.module("myapp", []);
+        app.controller("table", function($scope) {
+
+            $scope.total1 = 20;
+            $scope.total2 = 20;
+            $scope.total3 = 20;
+            $scope.total4 = 20;
+            // Code goes here
+
+            $scope.a = 0;
+            $scope.b = 0;
+            $scope.operation = '+';
+
+            $scope.na = function() {
+                return $scope.a - 0;
+            }
+
+            $scope.nb = function() {
+                return $scope.b - 0;
+            }
+
+            $scope.inca = function() {
+                $scope.a = $scope.na() + 1;
+            }
+
+            $scope.incb = function() {
+                $scope.b = $scope.nb() + 1;
+            }
+
+            $scope.deca = function() {
+                $scope.a = $scope.na() - 1;
+            }
+
+            $scope.decb = function() {
+                $scope.b = $scope.nb() - 1;
+            }
+
+            $scope.calculate = function() {
+                if ($scope.operation == '+') {
+                    return $scope.na() + $scope.nb();
+                }
+                if ($scope.operation == '-') {
+                    return $scope.a - $scope.b;
+                }
+                if ($scope.operation == '*') {
+                    return $scope.a * $scope.b;
+                }
+                if ($scope.operation == '/') {
+                    return $scope.a / $scope.b;
+                }
+                return "undef";
+            }
+
+
+            $scope.disp1 = function() {
+                $scope.total1 = $scope.total1 + $scope.newitem1.cost;
+                $scope.table1.push({
+
+                    name: $scope.newitem1.name,
+                    cost: $scope.newitem1.cost
+                })
+            };
+
+            $scope.disp2 = function() {
+                $scope.total2 = $scope.total2 + $scope.newitem2.cost;
+                $scope.table2.push({
+
+                    name: $scope.newitem2.name,
+                    cost: $scope.newitem2.cost
+                })
+            };
+            $scope.disp3 = function() {
+                $scope.total3 = $scope.total3 + $scope.newitem3.cost;
+                $scope.table3.push({
+
+                    name: $scope.newitem3.name,
+                    cost: $scope.newitem3.cost
+                })
+            };
+            $scope.disp4 = function() {
+                $scope.total4 = $scope.total4 + $scope.newitem4.cost;
+                $scope.table4.push({
+
+                    name: $scope.newitem4.name,
+                    cost: $scope.newitem4.cost
+                })
+            };
+
+
+            $scope.table1 = [{
+                name: 'packed-water',
+                cost: '20',
+
+
+            }];
+
+            $scope.table2 = [{
+                name: 'packed-water',
+                cost: '20',
+
+            }];
+
+            $scope.table3 = [{
+                name: 'packed-water',
+                cost: '20'
+            }];
+
+            $scope.table4 = [{
+                name: 'packed-water',
+                cost: '20'
+            }];
+
+        });
+
+        var x = document.getElementById("demo");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+        }
+    </script>
+
+</body>
+
+</html>
